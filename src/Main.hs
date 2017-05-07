@@ -13,25 +13,18 @@ import Data.Text.Lazy (pack)
 import Data.Text (unpack)
 import System.Environment (getArgs)
 import Data.Maybe (listToMaybe)
+import Control.Monad
 
 main :: IO ()
 main = do
+
     (selector:_) <- getArgs
-    interact (f selector)
+    let axis = parsePath >>> either error id >>> toAxis $ selector
+    interact' (f axis)
 
     where
+    
+    interact' f = interact $ pack >>> f >>> fmap unpack >>> unlines
 
-    f selector    = pack
-                >>> parseLT
-                >>> fromDocument
-                >>> stuffToError (toAxis . either error id . parsePath $ selector)
-                >>> stuffToError child
-                >>> stuffToError content
-                >>> unpack
+    f axis = (parseLT >>> fromDocument >>> axis) >=> child >=> content
 
-    stuffToEither f x = case listToMaybe (f x) of
-                            Nothing -> Left (show x)
-                            Just y -> Right y
-
-    stuffToError :: Show a => (a -> [b]) -> a -> b
-    stuffToError f x = (either error id) . (stuffToEither f) $ x
