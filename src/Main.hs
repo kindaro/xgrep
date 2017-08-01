@@ -32,12 +32,12 @@ main = do
     
     interact' f = interact $ Lazy.pack >>> f >>> fmap unpack >>> unlines
 
-    f options axis = parseLT >>> fromDocument >>> (axis &/ g options)
+    f options axis = parseLT >>> fromDocument >>> (axis >=> g options)
 
     g options cursor
         | (Just True) <- "raw" `lookup` options =
             pure . Lazy.toStrict . renderMarkup . toMarkup . node $ cursor
+        | [NodeContent x] <- node <$> child cursor = pure $ x
         | (NodeElement x) <- node cursor = pure . (pack . show) $ x
-        | (NodeContent x) <- node cursor = pure x
         | otherwise = pure . (pack . show) . node $ cursor
 
