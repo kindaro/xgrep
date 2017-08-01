@@ -20,6 +20,6 @@ executable xgrep
   -- other-modules:       
   -- other-extensions:    
   build-depends:       base >=4.9 && <4.10
-                     , xml-conduit, html-conduit, selectors, text
+                     , xml-conduit, html-conduit, selectors, text, blaze-markup
   hs-source-dirs:      src
   default-language:    Haskell2010
