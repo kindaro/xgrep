@@ -4,7 +4,7 @@
 
 module Main where
 
-import XML.Selectors.CSS (toAxis, parsePath)
+import Text.XML.Selectors.CSS (toAxis, parsePath)
 import Text.HTML.DOM (parseLT)
 import Text.XML (renderText, def, Node(NodeElement, NodeContent))
 import Text.XML.Cursor (fromDocument, cut, content, child, node, (&/))
