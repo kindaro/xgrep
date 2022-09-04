@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: xgrep
-version: 0.1.0.0
+version: 0.2.0.0
 author: Ignat Insarov
 maintainer: kindaro@gmail.com
 synopsis: Cut through your XML with CSS selectors!
@@ -16,13 +16,16 @@ executable xgrep
   build-depends:
     , base >=4.9
     , base-unicode-symbols
-    , distributive
     , blaze-markup
+    , bytestring
+    , cassava
     , containers >= 0.6.0.1
+    , distributive
     , html-conduit
-    , pretty-show
     , optparse-applicative
-    , selectors
+    , pretty-show
+    , selectors >= 0.1
+    , split
     , text
     , vector
     , xml-conduit
@@ -32,7 +35,12 @@ executable xgrep
     ApplicativeDo
     BlockArguments
     ImportQualifiedPost
+    OverloadedStrings
     PartialTypeSignatures
     PatternGuards
     RecordWildCards
+    ScopedTypeVariables
+    TypeApplications
     UnicodeSyntax
+
+  ghc-options: -Wall -Wextra
