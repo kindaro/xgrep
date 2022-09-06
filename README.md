@@ -1,6 +1,4 @@
-This is an open α version. You will have to build it yourself — no binary distribution is available yet. You will also need some special dependencies, but Cabal knows how to handle that.
-
-Please share your experience with me at issue #1.
+This is an open α version. Please share your experience with me at issue #1.
 
 # `xgrep`
 
